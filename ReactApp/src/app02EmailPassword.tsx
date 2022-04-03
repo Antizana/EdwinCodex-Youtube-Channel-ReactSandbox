@@ -1,31 +1,28 @@
 import "./styles.css";
 import { useState } from "react";
-import NavBar from "./navbar";
 
 export default function App() {
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: ""
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setLoginData({ ...loginData, [name]: value });
+    if (name === "email") setEmail(value);
+    else setPassword(value);
     setSubmitted(false);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setSubmitted(true);
     event.preventDefault();
   };
 
   return (
     <>
-      <NavBar />
-      <div>
-        <h1>Hello CodeSandBox</h1>
-        <h2>Start editting to see some magic happen!</h2>
+      <div className="App">
+        <h1>Hellow CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
       </div>
       <form>
         <label htmlFor="email">Email:</label>
@@ -36,15 +33,13 @@ export default function App() {
         <br />
         <input type="password" name="password" onChange={handleInputChange} />
         <br />
-        <input type="submit" value="Submit" onClick={handleSubmit} />
-        <button onClick={handleSubmit}>Resubmit</button>
-        <br />
+        <input type="submit" onClick={handleSubmit} />
       </form>
       {submitted && (
         <div>
-          Email: {loginData.email}
+          Email: {email}
           <br />
-          Password: {loginData.password}
+          Password: {password}
         </div>
       )}
     </>

@@ -2,18 +2,19 @@ import "./styles.css";
 import { useState } from "react";
 
 export default function App() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  });
   const [submitted, setSubmitted] = useState(false);
 
-  const inputHandler = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    setLoginData({ ...loginData, [name]: value });
     setSubmitted(false);
-    if (name === "email") setEmail(value);
-    else setPassword(value);
   };
 
-  const submitHandler = (event) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setSubmitted(true);
     event.preventDefault();
   };
@@ -27,19 +28,19 @@ export default function App() {
       <form>
         <label htmlFor="email">Email:</label>
         <br />
-        <input type="text" name="email" onChange={inputHandler} />
+        <input type="email" name="email" onChange={handleInputChange} />
         <br />
         <label htmlFor="password">Password:</label>
         <br />
-        <input type="text" name="password" onChange={inputHandler} />
+        <input type="password" name="password" onChange={handleInputChange} />
         <br />
-        <input type="submit" onClick={submitHandler} />
+        <input type="submit" value="Submit" onClick={handleSubmit} />
       </form>
       {submitted && (
         <div>
-          Email: {email}
+          Email: {loginData.email}
           <br />
-          Password: {password}
+          Password: {loginData.password}
         </div>
       )}
     </>

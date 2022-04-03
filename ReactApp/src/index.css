@@ -7,7 +7,7 @@
 }
 
 .navbar {
-  padding: 5vw;
+  padding: 2vw;
   display: flex;
   align-items: center;
   max-width: 600px;
@@ -24,7 +24,7 @@
 }
 
 .navbar a {
-  margin-left: 3vw;
+  margin-left: 1vw;
   text-decoration: none;
   padding: 1vw;
 }
@@ -35,6 +35,16 @@
 
 .content {
   max-width: 600px;
-  margin: 10vw auto;
-  padding: 5vw;
+  margin: 1vw auto;
+  padding: 1vw;
+}
+
+.form {
+  margin: auto;
+  width: 15vw;
+  padding-top: 1vw;
+}
+
+.text-center{
+  text-align: center;
 }

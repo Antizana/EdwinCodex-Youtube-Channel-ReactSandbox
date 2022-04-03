@@ -1,5 +1,6 @@
 import "./styles.css";
 import { useState } from "react";
+import NavBar from "./navbar";
 
 export default function App() {
   const [loginData, setLoginData] = useState({
@@ -8,7 +9,7 @@ export default function App() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setLoginData({ ...loginData, [name]: value });
     setSubmitted(false);
@@ -21,9 +22,10 @@ export default function App() {
 
   return (
     <>
-      <div className="App">
-        <h1>Hello CodeSandbox</h1>
-        <h2>Start editing to see some magic happen!</h2>
+      <NavBar />
+      <div>
+        <h1>Hello CodeSandBox</h1>
+        <h2>Start editting to see some magic happen!</h2>
       </div>
       <form>
         <label htmlFor="email">Email:</label>
@@ -35,6 +37,8 @@ export default function App() {
         <input type="password" name="password" onChange={handleInputChange} />
         <br />
         <input type="submit" value="Submit" onClick={handleSubmit} />
+        <button onClick={handleSubmit}>Resubmit</button>
+        <br />
       </form>
       {submitted && (
         <div>
